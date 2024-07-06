@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+    <form method="post" id="formulario-ficha">
+        {% csrf_token %}
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-4 mt-5 p-4 ficha_container">
+                    <h1 class="text-center mb- ficha_titulo">Ficha</h1>
+                    <br>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                        <img src="/media/{{imagen}}" width="100%"> <br>
+                        </div>
+                        <div class="col-md-6">
+                            
+                            {{ nombre }} <br>
+                            {{ html_estado|safe }}  <br>
+                            {{ html_precio|safe }}  <br>
+                            {{ descripcion }}  <br>
+                            {{ html_stock|safe }}  <br>
+                            <br>
+                            <div>
+                                <input type="hidden" id="accion">
+                                <a href="{% url 'comprar_ahora' %}" class="btn btn-primary ancho-160px"> 
+                                    Comprar ahora 
+                                </a>
+                                <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-160px"> 
+                                    Agregar al carrito 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    <br>
+    <br>
+    <br>
+
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'core/js/ficha.js' %}"></script>
+{% endblock script %}

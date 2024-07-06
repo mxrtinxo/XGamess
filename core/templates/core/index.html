@@ -1,0 +1,111 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <br>
+    <br>
+    <h1 class="titulo-principal">Bienvenido a XGames</h1>
+    <br>
+    <!-- contenido de la pagina ´rincipal -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'core/img/carrusel2.JPEG' %}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>¡Los mejores videojuegos a mejores precios!</h5>
+            <p>Ofertas disponibles toda la semana</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'core/img/carrusel1.JPEG' %}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>XGames, tu tienda de videojuegos de confianza</h5>
+            <p>Ofertas disponibles toda la semana</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'core/img/carrusel3.JPEG' %}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>¿Que esperas? ¡compra en XGames!</h5>
+            <p>Ofertas disponibles toda la semana</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+    
+    <main role="main">
+      {% if productos %}
+      <div class="container">
+        <br>
+        <section class="text-center">
+          <!-- Productos de la tienda -->
+          <div class="album py-2 bg-light">
+            <div class="container">
+              <div id="product-item" class="row">
+
+                {% for producto in productos %}
+
+                  
+                  
+                  
+
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card mb-4 box-shadow">
+                      <a href="{% url 'ficha' producto.id %}" class="link-bloque">
+                      <div class="text-center">
+                        <img class="card-img-top thumbnail-product" src="/media/{{ producto.imagen }}" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <div class="lead text-secondary fw-bold">
+                          DISPONIBLE
+                        </div>
+                        <div class="lead text-danger">
+                          <span class="sale-real-price fw-bold">Precio Normal</span><br>
+                          {{ producto.html_precio|safe }}
+                          <br>
+                        </div>
+                        <br>
+                        <p>
+                          <b>{{ producto.nombre }}</b>
+                          <br><br>
+                          <b>Descripción</b>
+                          <br>
+                          {{ producto.descripcion }}
+                          <br>
+                          <br>
+                          {{ producto.html_estado|safe }} <br>
+                          {{ producto.html_stock }} <br>
+                        </p>
+                        <div class="btn-group">
+                          <button class="btn btn-sm btn-outline-secondary" onclick="comprar()">Comprar</button>
+                          <button class="btn btn-sm btn-outline-secondary" onclick="agregarAlCarrito()">Agregar al carrito</button>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+                  </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      {% else %}
+
+      <h2>No se encontraron productos</h2>
+
+      {% endif %}
+    </main>
+{% endblock content %} 
+
+
+

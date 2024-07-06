@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XGames</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    
+</head>
+<body>
+
+
+<div style="text-align: center;">
+    <h1>¡Concursa por una prenda de vestir!</h1>
+    <h2>Por compras superiores a $20.000 en productos ya te encuentras participando!</h2>
+  </div>
+<!-- Agregar contenedor para los productos del concurso -->
+<div id="concurso" class="container mt-5 row justify-content-center"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- JavaScript para obtener productos de la API y mostrarlos en el contenedor -->
+<script>
+    const urlAPI = 'https://fakestoreapi.com/products';
+
+    fetch(urlAPI)
+        .then(response => response.json())
+        .then(products => {
+            const concursoContainer = document.getElementById('concurso');
+
+            for (let i = 0; i < 12; i++) {
+                const product = products[Math.floor(Math.random() * products.length)];
+
+                const html = `
+                    <div class="card mx-2 my-3" style="width: 18rem;">
+                        <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.title}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <a href="#" class="btn btn-primary">Participar en el concurso</a>
+                        </div>
+                    </div>
+                `;
+
+                concursoContainer.innerHTML += html;
+            }
+        });
+</script>
+{% endblock content %}
+</body>
+</html>

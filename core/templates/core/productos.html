@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<h1 class="mb-4">Mantenedor de Productos</h1>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Columna izquierda: Formulario de creación o edición de producto -->
+        <div class="col-md-6">
+            <form id="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {{ form.categoria|as_bootstrap_field }}
+                {{ form.nombre|as_bootstrap_field }}
+                {{ form.descripcion|as_bootstrap_field }}
+                {{ form.precio|as_bootstrap_field }}
+                {{ form.descuento_subscriptor|as_bootstrap_field }}
+                {{ form.descuento_oferta|as_bootstrap_field }}
+                
+                <!-- Imagen del producto -->
+
+                  
+                  {{ form.imagen|as_bootstrap_field }}
+                
+
+                  <!-- Botón para seleccionar imagen -->
+                  <button class="btn btn-outline-secondary mt-2" onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>
+                  <input type="file" id="id_imagen" name="imagen" style="display: none;" onchange="previewImage(event)">
+
+                  <!-- Botones de acción -->
+                  <div class="mt-2 mb-3">
+                      <input class="btn btn-outline-primary" type="submit" value="Guardar">
+                      <a class="btn btn-outline-success" href="{% url 'productos' 'crear' '0' %}">Nuevo</a>
+                      {% if form.instance.id %}
+                          <a class="btn btn-outline-danger" href="{% url 'productos' 'eliminar' form.instance.id %}">Eliminar</a>
+                      {% endif %}
+                </div>
+            </form>
+        </div>
+        
+        <!-- Columna derecha: Tabla de productos existentes -->
+        <div class="col-md-6">
+          
+            <table id="tabla-principal" class="table table-hover table-secondary">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Categoría</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>% Subs</th>
+                        <th>% Oferta</th>
+                        <th>Imagen</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.categoria }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.descripcion }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ producto.descuento_subscriptor }}</td>
+                        <td>{{ producto.descuento_oferta }}</td>
+                        <td>
+                            <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="Imagen de producto">
+                        </td>
+                        <td>
+                            <a href="{% url 'productos' 'actualizar' producto.id %}" class="btn btn-outline-secondary">Editar</a>
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'productos' 'eliminar' producto.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+  {% endblock content %}
+
+  {% block script %}
+  <script src="{% static 'core/js/validador_productos.js' %}"></script>
+  {% endblock script %}

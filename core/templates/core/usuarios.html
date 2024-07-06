@@ -1,0 +1,197 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+        <!-- Contenido de tu página aquí -->
+
+        
+        <!-- Contenido de la página principal -->
+        <main role="main">
+            <div class="container">
+                <section class="text-center">
+                    <br>
+                    <br>
+                    <h1>Mantenedor de usuarios</h1>
+                    <br>
+                    <br>
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Campos del registro de usuario -->
+                            <form method="POST" id="formulario_usuarios" action="/usuario" class="needs-validation" novalidate>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <form action=""></form>
+                            
+                                            <div class="form-group">
+                                                <label for="id" class="form-label">ID</label>
+                                                <input type="text" class="form-control form-control-sm" id="id" name="id" placeholder="Escriba el id" required>
+                                                <div class="invalid-feedback">Debe llenar el campo que quieres modificar</div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group" style="margin-bottom: 20px;">
+                                                <label for="tipoUsuario" class="form-label">Tipo de Usuario</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="Usuario" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                          Cliente
+                                      </label>
+                                                </div>
+                                                <br>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="Usuario" id="flexRadioDefault2" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                          Administrador
+                                      </label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="rut" class="form-label">RUT</label>
+                                                <input type="text" class="form-control form-control-sm" id="rut" name="rut " placeholder="Escriba el rut" required>
+                                                <div class="invalid-feedback">Debe llenar el campo que quieres modificar</div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="nombres" class="form-label">Nombres</label>
+                                                <input type="text" class="form-control form-control-sm" id="nombres" name="nombres" placeholder="Escriba los nombres"  required>
+                                                <div class="invalid-feedback">Debe llenar el campo que quieres modificar</div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="nombres" class="form-label">Apellidos</label>
+                                                <input type="text" class="form-control form-control-sm" id="apellidos"  name="apellidos" placeholder="Escriba los apellidos" required>
+                                                <div class="invalid-feedback">Debe llenar el campo que quieres modificar</div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="nombres" class="form-label">Correo</label>
+                                                <input type="text" class="form-control form-control-sm" id="correo"  name="correo" placeholder="Escriba su correo"  required>
+                                                <div class="invalid-feedback">Debe llenar el campo que quieres modificar</div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="dire" class="form-label">Dirección</label>
+                                                <textarea class="form-control" id="direccion" name="direccion" rows="3" placeholder="Escriba su Dirección"  required></textarea>
+                                                <div class="form-text"></div>
+                                                <div class="invalid-feedback">Debe llenar el campo con su dirección</div>
+
+                                            </div>
+                                            <br>
+                                            <div class="form-group text-start">
+                                                <label class="form-check-label" for="subscripcion">
+                                      <label for="tienda" class="form-label">Suscribirme a la tienda</label>
+                                                </label>
+                                                <div class="form-text">
+                                                    Acepto subscribirme a la tienda XGames por $2.500 mensuales para recibir descuentos semanales todo el año.
+                                                    <input class="form-check-input" type="checkbox" value="" id="subscripcion">
+                                                </div>
+                                            </div>
+                                            <br>
+
+
+                                            <div class="mb-3 fw-bold">
+                                                <label for="password" class="form-label">Contraseña</label>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="**********" required disabled>
+                                                <div class="form-text">
+                                                    <button type="button" class="btn btn-primary" onclick="generarContrasena()">Generar Contraseña</button>
+                                                </div>
+                                                <div class="invalid-feedback">Debe llenar el campo con su contraseña</div>
+                                            </div>
+
+                                        </div>
+                                        <button type="submit" class="btn btn-primary boton-pag-registrarse">Guardar</button>
+                                        <br>
+                                        <button type="reset" class="btn btn-primary boton-pag-registrarse">Nuevo</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        <br>
+                        
+                        <!-- Foto de perfil -->
+                        <div class="col">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="img/b5126803cf115b044849b64ca565a4a7.jpg" alt="" class="user-image">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                        <input type="file" class="btn btn-primary">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+            
+            </form>
+            </section>
+            </div>
+
+
+        </main>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>RUT</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Dirección</th>
+                        <th>Subscripción</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>ADMINISTRADOR</td>
+                        <td>12.345.678-9</td>
+                        <td>Juan</td>
+                        <td>Pérez</td>
+                        <td>juan@example.com</td>
+                        <td>Calle 123</td>
+                        <td>Si</td>
+                        <td><img src="img/persona.jpg" alt="Avatar" style="width: 50px;"></td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="editar()">Editar</button>
+                            <button type="button" class="btn btn-primary" onclick="eliminar()">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>CLIENTE</td>
+                        <td>98.765.432-1</td>
+                        <td>Maria</td>
+                        <td>González</td>
+                        <td>maria@example.com</td>
+                        <td>Avenida 456</td>
+                        <td>No</td>
+                        <td><img src="img/persona2.jpg" alt="Avatar" style="width: 50px;"></td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="editar()">Editar</button>
+                            <button type="button" class="btn btn-primary" onclick="eliminar()">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+{% endblock content %}
+
+{% block styles %}
+        
+{% endblock styles %}
+        

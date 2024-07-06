@@ -1,0 +1,141 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div id="menu"></div>
+        <div class="row">
+            <!-- Numero de boleta -->
+            <div class="col">
+                <br>
+                <h1>
+                Detalle de boleta: N°35 {{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}
+                </h1>
+            </div>
+
+            <!-- Fotos de estado de la boleta -->
+            <div class="col">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <img src="{% static 'core/img/augmented-reality.jpg' %}" width="width: 75px;">
+                        
+                                <br>
+                                Vendido
+                                <br>
+                                {{ boleta.fecha_venta|formatear_fecha }}
+                            </td>
+                            <td class="text-center">
+                                <img src="{% static 'core/img/home.jpg' %}" width="width: 75px;">
+                                <br>
+                                Despachado
+                                <br>
+                                {{ boleta.fecha_despacho|formatear_fecha }}
+                            </td>
+                            <td class="text-center">
+                                <img src="{% static 'core/img/location-up.jpg' %}" width="width: 75px;">
+                                <br>
+                                Entregado
+                                <br>
+                                {{ boleta.fecha_despacho|formatear_fecha }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tabla de productos -->
+        <div class="row justify-content-center">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>% Subs</th>
+                            <th>% Oferta</th>
+                            <th>% Desc total</th>
+                            <th>Precio a pagar</th>
+                            <th>Precio a pagar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ item.bodega.producto.nombre }}</td>
+                            <td>{{ item.precio }}</td>
+                            <td>{{ item.descuento_subscriptor|formatear_porcentaje }}</td>
+                            <td>{{ item.descuento_oferta|formatear_porcentaje }}</td>
+                            <td>{{ item.descuento_total|formatear_porcentaje }}</td>
+                            <td>{{ item.precio_a_pagar }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                          <td colspan="6"><b>Precio sin IVA</b></td>
+                          <td>{{ boleta.monto_sin_iva|formatear_dinero }}</td>
+                      </tr>
+                      <tr>
+                          <td colspan="6"><b>Valor del IVA (19%)</b></td>
+                          <td>{{ boleta.iva|formatear_dinero }}</td>
+                      </tr>
+                      <tr>
+                          <td colspan="6"><b>Total a pagar</b></td>
+                          <td>{{ boleta.total_a_pagar|formatear_dinero }}</td>
+                      </tr>
+                    </tfoot>
+                  <tbody>
+                    <tr>
+                        <td>RPG</td>
+                        <td>Diablo 4</td>
+                        <td>$50.000</td>
+                        <td>10%</td>
+                        <td>10%</td>
+                        <td>20%</td>
+                        <td>$10.000</td>
+                        <td>$40.000</td>
+                    </tr>
+                    <tbody>
+                        <td>FPS</td>
+                        <td>Call of Duty: Modern Warfare</td>
+                        <td>$70.000</td>
+                        <td>-</td>
+                        <td>15%</td>
+                        <td>15%</td>
+                        <td>$10.500</td>
+                        <td>$59.500</td>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                        <td>Aventura</td>
+                        <td>The Legend of Zelda: Breath of the Wild</td>
+                        <td>$80.000</td>
+                        <td>10%</td>
+                        <td>-</td>
+                        <td>10%</td>
+                        <td>$8.000</td>
+                        <td>$72.000</td>
+                    </tr>
+                    <tbody>
+                    <td>Estrategia</td>
+                    <td>Age of Empires IV</td>
+                    <td>$60.000</td>
+                    <td>-</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>$6.000</td>
+                    <td>$54.000</td>
+                    <!-- Aquí van el resto de las filas de la tabla -->
+                </tbody>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+

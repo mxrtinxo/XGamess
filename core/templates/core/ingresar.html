@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+
+
+  <div class="row justify-content-center">
+    <h1 class="text-center mb-4">Iniciar sesión</h1>
+    <form id="form" method="POST" class="col-5 border border-3 p-4">
+
+      {% csrf_token %} 
+
+      <!-- Botones -->
+      {{ form|as_bootstrap_form }}
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-outline-success"> Iniciar Sesion </button>
+        <!-- <a href="{% url 'mipassword' %}"> -->
+        <button class="btn btn-outline-danger"> Olvide mi contraseña </button>
+        <!-- </a> -->
+        <a href="{% url 'registro' %}" class="btn btn-outline-secondary">Registrarse</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Combobox de usuarios (QUITAR EN VERSION DE PRODUCCION DEL SOFTWARE) -->
+  <!-- NO LO BORRES PARA QUE PUEDAS HACER TUS PRUEBAS MAS RAPIDAMENTE  -->
+  {% include 'common/combobox_usuarios.html' %}
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/validador_ingresar.js' %}"></script>
+{% endblock script %}
+

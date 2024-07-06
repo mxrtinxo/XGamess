@@ -1,0 +1,183 @@
+
+
+.logo {
+    width:40px;
+    margin-right:10px;
+}
+
+.titulo-principal {
+    font-size: 3rem;
+    color: #000000; 
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    animation: glow 2.5s ease-in-out infinite alternate;
+  }
+
+  body {
+    background-image: url("{% static 'myapp/img/wp9204437.webp' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+}
+
+
+#header {
+  background-color: black; 
+  transition: background-color 0.3s ease; /
+}
+
+#header.navbar-scrolled {
+  background-color: #333; 
+}
+
+#header .navbar-brand {
+  color: white !important; 
+}
+#header .navbar-nav .nav-link {
+  color: white !important; 
+}
+
+#header .navbar-nav .nav-link:hover {
+  color: lightgray !important; 
+}
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px rgba(255, 0, 170, 0.5), 0 0 10px rgba(194, 0, 194, 0.5), 0 0 20px rgb(73, 22, 214);
+    }
+    to {
+      text-shadow: 0 0 10px rgba(15, 161, 230, 0.8), 0 0 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.171);
+    }
+  }  
+
+.thumbnail-product{
+    height:150px !important;
+    max-width:150px !important;
+
+}
+
+.btn-group .btn {
+    background-color: #16ec03; 
+    color: white; 
+    border-color: #0f0908; 
+  }
+
+.sale-real-price {
+    text-decoration:line-through;
+
+}
+.sale-offer-price {
+   color:darkgreen;
+
+}
+
+.user-image {
+    max-width: 140px;
+}
+
+#contenedor {
+    background-image: url('img/white-pc-kdhvtd2i2e3em761.jpg');
+    /* Otras propiedades CSS */
+}
+
+.boton-png-registrarse {
+    width: 100px;
+}
+
+.ficha_foto {
+  height: 100%;
+  float: right;
+  border: 3px solid gray;
+}
+
+.ficha_titulo {
+  font-size: 60px;
+  font-weight: bolder;
+}
+
+.ficha_disponible {
+  color: green;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.ficha_precio {
+  font-size: 40px;
+}
+
+.menu{
+  font-size: 100px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.ficha_oferta {
+  font-weight: bolder;
+  font-size: 30px;
+  color: aqua; 
+}
+
+.ficha_precio_descuento{
+  font-size: 30px;
+
+}
+
+.ficha_no_disponible{
+  font-weight: bolder;
+  font-size: 30px;
+  color: red
+
+}
+
+.unidades{
+  
+  font-size: 22px;
+
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+}
+
+.form-label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.form-control {
+  
+  margin-right: 300px; 
+}
+
+.error{
+
+  color: red;
+}
+
+.link-bloque {
+  text-decoration: none;
+  color: inherit;
+}
+
+.imagen-pequena {
+  width: 100px; /* Ajusta este valor según sea necesario */
+  height: auto; /* Mantiene la proporción de aspecto */
+}
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
+}
